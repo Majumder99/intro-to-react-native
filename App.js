@@ -1,11 +1,17 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   return (
+    //view used for hold the layout and our component.. we need to wrap our component within view
+    //text is just for string value
     <View style={styles.container}>
-      <Text>Hello i am sourav</Text>
-      <StatusBar style="auto" />
+      <View style={styles.btn}>
+        <Button title="Hello" />
+      </View>
+      <Text style={{ borderWidth: 2, borderColor: "#eee", color: "#000" }}>
+        Hello i am sourav
+      </Text>
     </View>
   );
 }
@@ -16,5 +22,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  btn: {
+    padding: 20,
+    backgroundColor: "#eee",
+    color: "#fff",
+    marginBottom: 35,
   },
 });
