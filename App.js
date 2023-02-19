@@ -7,13 +7,18 @@ import {
   View,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native";
+import GoalItems from "./components/GoalItems";
 
 export default function App() {
   const [addedText, setAddedText] = useState("");
   const [goals, setGoals] = useState([]);
   const goalsAdd = () => {
-    setGoals((prev) => [...prev, addedText]);
+    setGoals((prev) => [
+      ...prev,
+      { text: addedText, key: Math.random().toString() },
+    ]);
   };
   const inputChange = (text) => {
     setAddedText(text);
@@ -33,13 +38,21 @@ export default function App() {
       </View>
       {/* Scroolview render all the items which is not visible as well. That will cause performance issues */}
       <View style={styles.goalsStyle}>
-        <ScrollView>
+        {/* <ScrollView>
           {goals.map((goal) => (
             <Text key={goal} style={styles.goalItem}>
               {goal}
             </Text>
           ))}
-        </ScrollView>
+        </ScrollView> */}
+        {/* Flatlist won't render item like scrollview  */}
+        {/* text={itemData.item.text} */}
+        <FlatList
+          data={goals}
+          renderItem={(itemData) => {
+            return <GoalItems itemData={itemData} />;
+          }}
+        />
       </View>
     </View>
   );
@@ -63,12 +76,5 @@ const styles = StyleSheet.create({
   },
   goalsStyle: {
     flex: 3,
-  },
-  goalItem: {
-    backgroundColor: "blue",
-    borderRadius: 8,
-    padding: 15,
-    marginBottom: 10,
-    color: "white",
   },
 });
