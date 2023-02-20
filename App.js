@@ -60,7 +60,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+    marginTop: 45,
     marginBottom: 30,
     backgroundColor: "#fff",
   },
